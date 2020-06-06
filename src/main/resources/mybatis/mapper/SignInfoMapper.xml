@@ -7,6 +7,24 @@
     <!--    public SignInfo getById(String id);-->
     <select id="getById" resultType="firefly.sms.bean.SignInfo">
     select * from signInfo where id = #{id}
-  </select>
+    </select>
+
+    <!--    void delById(String id);-->
+    <delete id="delById">
+         delete from signInfo where id = #{id}
+    </delete>
+
+
+    <!--    int addOne(SignInfo signInfo);-->
+    <insert id="addOne" parameterType="firefly.sms.bean.SignInfo">
+        insert into signInfo(id,date,name,location,healthInfo)
+            values(#{id},#{date},#{name},#{location},#{healthInfo})
+    </insert>
+
+    <!--    int getAll();-->
+    <select id="getAll" resultType="firefly.sms.bean.SignInfo">
+        select * from signInfo
+    </select>
+
 
 </mapper>

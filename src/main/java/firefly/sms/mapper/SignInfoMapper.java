@@ -1,10 +1,9 @@
 package firefly.sms.mapper;
 
 import firefly.sms.bean.SignInfo;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author Firefly
@@ -17,5 +16,11 @@ import org.springframework.stereotype.Repository;
 public interface SignInfoMapper {
 
     SignInfo getById(String id);
+
+    boolean delById(String id);
+
+    int addOne(SignInfo signInfo);
+
+    List<SignInfo> getAll();
 
 }

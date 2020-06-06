@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疫情签到</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<style type="text/css">
+    h1.ex1 {
+        margin-top: 5cm;
+        margin-left: 15cm
+    }
+
+    .form-group1 {
+        height: 80px;
+        margin-top: 1cm;
+        margin-right: 5cm;
+    }
+
+    .form-group2 {
+        height: 80px;
+        margin-right: 5cm;
+    }
+
+    .form-group3 {
+        height: 80px;
+        margin-right: 5cm;
+    }
+
+    .form-group4 {
+        height: 50px;
+        margin-right: 5cm;
+    }
+</style>
+<style>
+    body {
+        background: url(0.png);
+        background-size: 100%;
+    }
+</style>
+<script>
+    function submit() {
+        console.log("start to send data")
+        let name = document.getElementById("name").value;
+        let id = document.getElementById("id").value
+        let place = document.getElementById("place").value
+        let status = document.getElementById("status").value
+        console.log(name)
+        console.log(id)
+        console.log(place)
+        console.log(status)
+
+        if (id === "" || name === "" || place === "" || status === "") {
+            alert("null vaule")
+            return
+        }
+        document.getElementById("tab").innerText = "签到中，请稍后~~~  ^_^"
+        $.ajax({
+            url: "/sign/addOne",
+            data: {name: name, id: id, location: place, healthInfo: status},
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                document.getElementById("tab").innerText = "签到结果： "
+                if (data.code === "200" && data.msg === "1") {
+                    document.getElementById("res").innerText = "    签到成功"
+                } else {
+                    document.getElementById("res").innerText = "    签到失败请稍后来"
+                    alert("server error")
+                }
+
+
+                // data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
+            }
+        });
+
+
+    }
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<div class="container-fluid">
+    <h1 class="ex1" align="center">每日打卡</h1>
+    <div class="form-group1">
+        <label for="id" class="col-xs-offset-6 col-xs-1 control-label">姓名</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" id="name">
+        </div>
+    </div>
+    <div class="form-group2">
+        <label for="name" class="col-xs-offset-6 col-xs-1 control-label">学号</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" id="id">
+        </div>
+    </div>
+    <div class="form-group3">
+        <label for="place" class="col-xs-offset-6 col-xs-1 control-label">地点</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" id="place">
+        </div>
+    </div>
+    <div class="form-group4">
+        <label for="status" class="col-xs-offset-6 col-xs-1 control-label">健康状态</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" id="status" placeholder="Status">
+        </div>
+    </div>
+    <!--    <div class="form-group5">-->
+    <!--        <div class="col-xs-offset-10 col-xs-2">-->
+    <!--            <div class="checkbox">-->
+    <!--                <label>-->
+    <!--                    <input type="checkbox"> Check-->
+    <!--                </label>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="form-group6">
+        <div class="col-xs-offset-10 col-xs-2">
+            <button onclick="submit()" class="btn btn-default">签到</button>
+        </div>
+    </div>
+    <div class="form-group4">
+        <label for="status" class="col-xs-offset-6 col-xs-1 control-label" id="tab"></label>
+        <div id="res"></div>
+    </div>
+
+</div>
+
+</body>
+</html>

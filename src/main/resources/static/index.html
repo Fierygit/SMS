@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>欢迎界面</title>
+    <style>
+        .center
+        {
+            text-align:center;
+
+        }
+        body
+        {
+            background-image:url('封面.png');
+            background-repeat:no-repeat;
+            background-position:left top;
+        }
+        h2   {font-size:30pt;}
+        h2   {color:black;}
+        p    {font-size:20pt;}
+        img  {margin-left:350px;}
+        a    {font-size:20pt;}
+        a    {margin-left:420px;}
+        a:link {color:#000000;}      /* 未访问链接*/
+        a:hover {color:#FF00FF;}  /* 鼠标移动到链接上 */
+        a:active {color:#0000FF;}  /* 鼠标点击时 */
+    </style>
 </head>
 <body>
-        欢迎访问 学生假期管理系统
+        <h2 class="center">欢迎访问 学生假期管理系统</h2>
+        <hr>
+        <p class="center">可以选择每日签到，或者查看已经公示的公告：</p>
+        <img src="封面.png" width="800" height="450" />
+        <br>
+        <a href="sign.html">签到</a>
+        <a href="notice.html">公告查看</a>
 </body>
 </html>

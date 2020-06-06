@@ -1,8 +1,7 @@
 package firefly.sms.bean;
 
-import org.springframework.context.annotation.Bean;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author Firefly
@@ -20,6 +19,13 @@ public class SignInfo {
     String healthInfo;
 
     public SignInfo() {
+    }
+
+    public SignInfo(SignInfoDto signInfo) {
+        this.id = signInfo.getId();
+        this.healthInfo = signInfo.getHealthInfo();
+        this.location = signInfo.getLocation();
+        this.name = signInfo.getName();
     }
 
     public SignInfo(String id, Date date, String name, String location, String healthInfo) {
@@ -68,5 +74,16 @@ public class SignInfo {
 
     public void setHealthInfo(String healthInfo) {
         this.healthInfo = healthInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "SignInfo{" +
+                "id='" + id + '\'' +
+                ", date=" + date +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", healthInfo='" + healthInfo + '\'' +
+                '}';
     }
 }
