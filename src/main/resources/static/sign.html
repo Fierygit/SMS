@@ -40,6 +40,7 @@
     }
 </style>
 <script>
+    var s;
     function submit() {
         console.log("start to send data")
         let name = document.getElementById("name").value;
@@ -65,7 +66,8 @@
                 console.log(data)
                 document.getElementById("tab").innerText = "签到结果： "
                 if (data.code === "200" && data.msg === "1") {
-                    document.getElementById("res").innerText = "    签到成功"
+                    document.getElementById("res").innerText = "    签到成功\n 5秒后返回"
+                    s =  setInterval(go2index,5000);
                 } else {
                     document.getElementById("res").innerText = "    签到失败请稍后来"
                     alert("server error")
@@ -75,8 +77,11 @@
                 // data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
             }
         });
+    }
 
-
+    function go2index() {
+        location.href = "index.html";
+        clearInterval(s);
     }
 
 </script>
